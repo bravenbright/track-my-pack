@@ -1,0 +1,26 @@
+{
+  "name": "track-my-pack",
+  "version": "1.0.0",
+  "description": "Employee tracking application to view and manage a team roster.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bravenbright/track-my-pack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bravenbright/track-my-pack/issues"
+  },
+  "homepage": "https://github.com/bravenbright/track-my-pack#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "inquirer": "^8.2.5",
+    "mysql2": "^3.0.1"
+  }
+}
