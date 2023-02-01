@@ -3,10 +3,10 @@
 You CLI companion to organize your company roster.
 
 ## Table of Contents
-1.[Description](#description)  
-2.[Usage](#usage)
-3.[Contributors](#contributors)
-4.[License](#license)  
+1. [Description](#description)  
+2. [Usage](#usage)
+3. [Contributors](#contributors)
+4. [License](#license)  
 
 ## Description
 
