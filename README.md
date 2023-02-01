@@ -11,17 +11,17 @@ You CLI companion to organize your company roster.
 ## Description
 
 This application allows the user to add, view, and modify their employee roster via the command line interface of their operating system. 
-
+![Track-My-Pack](./assets/images/Track-My-Pack-SCRNSHT.png)
+https://bravenbright.github.io/track-my-pack/
 ### Usage 
 
-To use this you will need ![Node.js](https://nodejs.org/en/) installed on your computer.
+video demo: https://drive.google.com/file/d/1tR5kgXnB-tRKot8wIK8NM0UCql6MHKba/view
+
+To use this application you will need ![Node.js](https://nodejs.org/en/) installed on your computer.
 
 Once you have node installed and all code, you need to run 'npm i' to install all necessary packages that the application depends on located withing the package.json.
 
 After you have successfully ran 'npm i' you should now be able to run 'node server.js' and then be prompted with the CLI questions via the terminal. 
-
-![Track-My-Pack](./assets/images/Track-My-Pack-SCRNSHT.png)
-video demo: https://drive.google.com/file/d/1tR5kgXnB-tRKot8wIK8NM0UCql6MHKba/view
 
 #### Contributors
 Brigita Biederman (aka bravenbright) 
