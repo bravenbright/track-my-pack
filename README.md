@@ -1,11 +1,12 @@
-# Track My Pack
+![License](https://img.shields.io/badge/License-MIT-yellow)
+# Track My Pack  
 You CLI companion to organize your company roster.
-![License](https://img.shields.io/badge/License-MIT-yellow) 
+
 ## Table of Contents
-[Description](#description)  
-[Usage](#usage)
-[Contributors](#contributors)
-[License](#license)  
+1.[Description](#description)  
+2.[Usage](#usage)
+3.[Contributors](#contributors)
+4.[License](#license)  
 
 ## Description
 
