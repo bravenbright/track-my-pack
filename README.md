@@ -25,8 +25,8 @@ After you have successfully ran 'npm i' you should now be able to run 'node serv
 
 #### Contributors
 Brigita Biederman (aka bravenbright) 
- * ![Github](https://github.com/bravenbright) 
- * ![Email](mailto:bbryantcs@gmail.com)
+ * [Github](https://github.com/bravenbright) 
+ * [Email](mailto:bbryantcs@gmail.com)
 
  #### License
 Copyright (c) 2012-2022 Scott Chacon and others
