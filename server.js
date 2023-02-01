@@ -2,6 +2,9 @@ const inquirer = require('inquirer');
 // import{createDept} from './lib';
 const mysql = require('mysql2');
 const db = require('./db/db');
+const fs = require('fs');
+const cTable = require('console.table');
+require("dotenv").config();
 
 let title = `
 ████████ ██████   █████   ██████ ██   ██     ███    ███ ██    ██     ██████   █████   ██████ ██   ██ 
@@ -36,7 +39,7 @@ const initialQuestion = () => {
          {
             name: 'Create a new employee',
             value: 'createEmpl'
-         }
+         },
          {
             name: 'Create a new role',
             value: 'createRole'
@@ -70,10 +73,10 @@ const initialQuestion = () => {
          case 'createDept':
             createDept();
             break;
-         case 'createDept':
+         case 'createEmpl':
             createEmployee();
             break;
-         case 'createDept':
+         case 'createRole':
             createRole();
             break;
          default:
@@ -103,29 +106,77 @@ function createDept() {
 };
 
 function createEmployee() {
+   let roleChoices = []; 
+   db.query('SELECT * FROM role', function (err, result) {
+      if (err) {
+         console.log(err);
+      } else {
+         for( var i = 0; i < Object.keys(result).length; i++){
+            roleChoices.push({
+                  name: result[i].name,
+                  value: result[i].id
+            });
+         }
+      }
+   })
+   let managerChoices = []; 
+   db.query('SELECT * FROM employee', function (err, result) {
+      if (err) {
+         console.log(err);
+      } else {
+         for( var i = 0; i < Object.keys(result).length; i++){
+            managerChoices.push({
+                  name: `${result[i].first_name} ${result[i].last_name}` ,
+                  value: result[i].id
+            });
+         }
+      }
+   })
    inquirer.prompt([
       {
          type: 'input',
          message: 'What is your employee first name?',
          name: 'first_name',
-         value: 'emplLastName'
+         value: 'emplFirstName'
       },
       {
          type: 'input',
          message: 'What is your employee last name?',
          name: 'last_name',
-         value: 'emplFirstName'
-      // should I asign a manger id or have them input one?
+         value: 'emplLastName'
+      },
+      {  type: 'list',
+         message: 'What is your employee role',
+         name: 'role_id',
+         value: 'emplRole',
+         choices: roleChoices
+      },
+      {
+         type: 'list',
+         message: 'What is the manager id?',
+         name: 'manager_id',
+         value: 'managerId',
+         choices: managerChoices
+      },
+      {
+         type: 'datepicker',
+         message: 'What is employee birthday in YYYY-MM-DD format?',
+         name: 'birthdate',
+         value: 'emplBirthday',
+         format: ['YYYY', '-', 'MM', '-', 'DD']
+      },
+      {
+         type: 'input',
+         message: 'What is your favorite cake flavor?',
+         name: 'empl_cake',
+         value: 'emplCake',
       }])
    .then((res) => {
-      // idk if i need this but i didn't want the last name to override the first and t that's
-      // what i though would happen here if I didn't creat a new variable i guess 
-      let newEmplName = 'emplFirstName' + 'emplLastName';
       let dbRes = db.query('INSERT INTO employee SET ?', res, function (err) {
          if (err) {
             console.log(err);
          } else {
-            console.log(`Employee "${res.name}" added to database.`);
+            console.log(`Employee "${res.first_name} ${res.last_name}" added to database.`);
             initialQuestion();
          }
        });
@@ -133,41 +184,63 @@ function createEmployee() {
 };
 
 function createRole() {
+   let deptChoices = [];
+   db.query('SELECT * FROM department', function (err, result) {
+      if (err) {
+         console.log(err);
+      } else {
+         for( var i = 0; i < Object.keys(result).length; i++){
+            deptChoices.push({
+                  name: result[i].name,
+                  value: result[i].id
+            });
+         }
+      }
+   })
    inquirer.prompt([
+      
       {
          type: 'input',
-         message: 'What is the new role you would like to add?',
-         name: 'title',
+         message: 'What is the title of the role you would like to add?',
+         name: 'name',
          value: 'roleName'
       },
       {
-         type: 'input',
-         
+         type: 'list',
+         message: 'Select the department for this role',
+         name: 'department_id',
+         value: 'newDeptRole',
+         choices: deptChoices
+      },
+      {
+         type: 'number',
+         message: 'What is the salary of this role?',
+         name: 'salary',
+         value: 'newRoleSalary'
       }
-      ])
+   ])
    .then((res) => {
-      let dbRes = db.query('INSERT INTO employee SET ?', res, function (err) {
+      let dbRes = db.query('INSERT INTO role SET ?', res, function (err) {
          if (err) {
             console.log(err);
          } else {
-            console.log(`Employee "${res.name}" added to database.`);
+            console.log(`Role "${res.name}" added to database.`);
             initialQuestion();
          }
        });
    })
 };
 
+
 function viewTable(tableName) {
    db.query('SELECT * FROM ??', tableName, function (err, result) {
       if (err) {
          console.log(err);
       } else {
-         console.log(result);
+         console.table(result);
          initialQuestion();
       }
    })
 };
 
 initialQuestion();
-
-

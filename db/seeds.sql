@@ -1,22 +1,23 @@
-const db = require(./db.js)
-INSERT INTO deparment (id, name)
-VALUES (001, "Business")
-       (002, "Finance")
-       (003, "Communications")
-       (004, "Media")
+-- TRUNCATE department;
+-- TRUNCATE role;
+-- TRUNCATE employee;
+INSERT INTO department (name)
+VALUES ("Business"),
+       ("Finance"),
+       ("Communications"),
+       ("Media");
 
-
-INSERT INTO role ( id, title, salary, department_id);
-VALUES (001, Mulit-Deparment Manageer, 120.8, 001)
-       (002, Communications Representative, 75.5, 002)
-       (003, Business Manager, 80.2, 003)
-       (004, Media Organizer, 40.5,  004)
-       (005, Social Media Affiliate, 30.6, 005)
-       (006, Accountant, 100.5, 001)
+INSERT INTO role (name, salary, department_id)
+VALUES ("Multi-Deparment Manager", 120.8, 1),
+       ("Communications Representative", 75.5, 2),
+       ("Business Manager", 80.2, 3),
+       ("Media Organizer", 40.5,  4),
+       ("Social Media Affiliate", 30.6, 4),
+       ("Accountant", 100.5, 1);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (001, Rick, Sanchez, 001, 001, 001)
-       (002, Morty, Sanchez, 002, 001, 003)
-       (003, Jerry, Doe, 003, 001)
-       (004, Melissa, Mcarthy, 002, 003)
-       (005, Marc, Anthony, 005, 001)
+VALUES (null, "Rick", "Sanchez", 1, null),
+       (null, "Morty", "Sanchez", 2, 1),
+       (null, "Jerry", "Doe", 3, 1),
+       (null, "Melissa", "Mcarthy", 2, 3),
+       (null, "Marc", "Anthony", 5, 4);
